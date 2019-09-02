@@ -3,63 +3,66 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-import Home from '../pages/Home.vue'  //首页
-import Mine from '../pages/Mine.vue'   //我的
-import Category from '../pages/Category.vue'   //分类
-import Cart from '../pages/Cart.vue'   //购物车
-import Login from '../pages/Login.vue'   //登录
-import Reg from '../pages/Reg.vue'    //注册
+import Home from '../components/Home/Home.vue' //首页
+import Mine from '../components/Mine/Mine.vue' //我的
+import Category from '../components/Category/Category.vue' //分类
+import Cart from '../components/Cart/Cart.vue' //购物车
+import Login from '../components/Login/Login.vue' //登录
+import Reg from '../components/Reg/Reg.vue' //注册
 
 import axios from 'axios'
 import store from '../vuex'
 
 let router = new VueRouter({
-    routes:[
-        {
-            name:'Home',
-            path:'/home',
+    routes: [{
+            name: 'Home',
+            path: '/Home',
             // component:Home
-            components:{
-                default:Home,
+            components: {
+                default: Home,
             }
         },
         {
-            name:'Category',
-            path:'/category',
-            component:Category,
+            name: 'Category',
+            path: '/Category',
+            component: Category,
         },
         {
-            name:'Cart',
-            path:'/cart',
-            component:Cart,
+            name: 'Cart',
+            path: '/Cart',
+            component: Cart,
         },
         {
-            name:'Mine',
-            path:'/mine',
-            component:Mine,
-            meta: { requiresAuth: true }
+            name: 'Mine',
+            path: '/Mine',
+            component: Mine,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
-            path:'/',
-            redirect:{name:'Home'}
+            path: '/',
+            redirect: {
+                name: 'Home'
+            }
         },
         {
-            name:'Login',
-            path:'/login',
-            component:Login
+            name: 'Login',
+            path: '/Login',
+            component: Login
         },
-        
+
     ],
-    scrollBehavior (to, from, savedPosition) {     
-        if(savedPosition) {
+    scrollBehavior(to, from, savedPosition) {
+        if (savedPosition) {
             setTimeout(() => {
                 window.scrollTo(savedPosition.x, savedPosition.y)
             }, 200)
-        }      
+        }
     }
 })
 // router.beforeEach((to, from, next) => { 
-    
+
 //     //显示隐藏菜单
 //     if(to.matched[0].path != "/home" && to.matched[0].path !="/category"){
 //       store.commit('changeMenuShow',false)
@@ -80,7 +83,7 @@ let router = new VueRouter({
 //     }else{
 //         next();
 //     }
-    
+
 // })
 
 export default router;
