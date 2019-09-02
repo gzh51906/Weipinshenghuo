@@ -13,6 +13,7 @@ import Reg from '../pages/Reg.vue'    //注册
 import axios from 'axios'
 import store from '../vuex'
 
+
 let router = new VueRouter({
     routes:[
         {
