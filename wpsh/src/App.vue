@@ -5,7 +5,7 @@
     </transition>
 
     <!-- 底部菜单 -->
-    <mt-tabbar v-model="selected" @click.native="goto(selected)" v-show="menuShow">
+    <mt-tabbar v-model="selected" @click.native="goto(selected)">
       <mt-tab-item
         :id="item.path"
         v-for="item in pages"
@@ -27,7 +27,7 @@ import MintUI from "mint-ui";
 import "mint-ui/lib/style.css";
 Vue.use(MintUI);
 
-import { mapState, mapMutations } from "vuex";
+// import { mapState, mapMutations } from "vuex";
 
 export default {
   name: "app",
@@ -49,72 +49,32 @@ export default {
           img1: require("./assets/imgs/icon/kind1.png")
         },
         {
-          title: "客服",
-          path: "/service",
-          name: "Service",
-          img: require("./assets/imgs/icon/service.png")
-        },
-        {
           title: "购物车",
           path: "/cart",
           name: "Cart",
-          img: require("./assets/imgs/icon/cart.png")
+          img: require("./assets/imgs/icon/cart.png"),
+          img1: require("./assets/imgs/icon/footer_icon_5.png")
         },
         {
           title: "我的",
           path: "/mine",
           name: "Mine",
           img: require("./assets/imgs/icon/redcapationl1.png"),
-          img1: require("./assets/imgs/icon/redcapationl1.png")
+          img1: require("./assets/imgs/icon/footer_icon_7.png")
         }
       ],
       selected: "/home"
     };
   },
   computed: {
-    ...mapState({
-      menuShow(state) {
-        let te = "/" + window.location.hash.slice(1).split("/")[1];
-        if (te) {
-          this.selected = te;
-        }
-        return state.common.menuShow;
-      }
-    })
+  
   },
   methods: {
-    ...mapMutations(["changeMenuShow"]),
-    goto(selected) {
-      if (selected != "/home" && selected != "/category") {
-        this.changeMenuShow(false);
-      }
-      this.$router.push({ path: this.selected });
-    }
+      goto(path){
+      this.$router.push({path})
+    },
   },
-  destroyed(){
-    this.changeMenuShow(true);
-  },
-  created() {
-    let te = "/" + window.location.hash.slice(1).split("/")[1];
-    if (te) {
-      this.selected = te;
-    }
 
-    if (sessionStorage.getItem("store")) {
-      this.$store.replaceState(
-        Object.assign(
-          {},
-          this.$store.state,
-          JSON.parse(sessionStorage.getItem("store"))
-        )
-      );
-    }
-
-    //在页面刷新时将vuex里的信息保存到sessionStorage里
-    window.addEventListener("beforeunload", () => {
-      sessionStorage.setItem("store", JSON.stringify(this.$store.state));
-    });
-  }
 };
 </script>
 

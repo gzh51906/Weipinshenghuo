@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './routers'
+import router from './router'
 import axios from 'axios'
 import store from './vuex'
 
@@ -10,11 +10,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
 import MintUI from 'mint-ui'
-import 'mint-ui/lib/style.css'
-import './lib/dist/css/mui.css'
-import './lib/dist/css/icons-extra.css'
-import './lib/dist/js/rem'
-import './assets/js/rem'
+
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(MintUI)
 
