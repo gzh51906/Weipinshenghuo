@@ -1,6 +1,6 @@
 <template>
   <div class="cart">
-    <el-row :gutter="20" v-for="item in cartlist" :key="item.goods_id">
+    <el-row :gutter="20"  v-for="item in cartlist" :key="item.goods_id" style="backgroud:#fff">
       <el-col :span="16">
         <el-col :span="6">
             <img :src="item.goods_image" @click="goto(item.goods_id)"/>
@@ -12,10 +12,11 @@
         </el-col>
       </el-col>
       <el-col :span="4" :offset="4">
-        <el-button type="text" icon="el-icon-delete" @click="remove(item.goods_id)">删除</el-button>
+      <el-button   @click="remove(item.goods_id)" id="cartTools"></el-button>
+        <!-- <el-button type="text" icon="el-icon-delete" @click="remove(item.goods_id)">删除</el-button> -->
       </el-col>
     </el-row>
-    <el-row :gutter="50">
+    <el-row :gutter="50" align="bottom">
         <el-col :span="24">
             <el-col :span="16" class="total price">
                 总计：<span>{{totalPrice.toFixed(2)}}</span> 
@@ -25,6 +26,7 @@
             </el-col>
         </el-col>
     </el-row>
+    <!-- <img src="../../assets/" alt=""> -->
   </div>
 </template>
 
@@ -96,5 +98,14 @@ export default {
 </script>
 
 <style>
+#cartTools {
+    width: 40px;
+    text-align: center;
+    overflow: hidden;
+    margin-left: 5px;
+    position: relative;
+    background: url(../../assets/imgs/icon/edit_bg.png) no-repeat center;
+    background-size: 25px auto;
 
+}
 </style>

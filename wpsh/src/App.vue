@@ -12,6 +12,7 @@
         :key="item.name"
         :class="{fontRedColor:item.path == selected}"
       >
+        <span  v-if="item.name=='Cart'"><code class="Cart_Num">{{cartlenth}}</code></span>
         <img :src="item.img1" slot="icon" v-if="item.path == selected" />
         <img :src="item.img" slot="icon" v-else />
         {{item.title}}
@@ -28,6 +29,7 @@ import "mint-ui/lib/style.css";
 Vue.use(MintUI);
 
 // import { mapState, mapMutations } from "vuex";
+
 
 export default {
   name: "app",
@@ -67,7 +69,10 @@ export default {
     };
   },
   computed: {
-  
+   cartlenth(){
+      // 模块化后：
+      return this.$store.state.cart.cartlist.length;
+    },
   },
   methods: {
       goto(path){
@@ -193,6 +198,7 @@ li {
   z-index: 100;
 }
 .mint-tabbar a {
+  position: relative;
   color: #333333;
   font-size: 0.22rem;
   display: block;
@@ -208,6 +214,32 @@ li {
   text-align: center;
   line-height: 0.5rem;
   font-size: 0.22rem;
+}
+/* .mint-tabbar a span {
+    top: 0;
+    display: block;
+    width: 25px;
+    height: 25px;
+    margin: 0 auto;
+    background-size: 80% auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: 1000;
+} */
+span code {
+    font-style: normal;
+    position: absolute;
+    right: 35%;
+    top: .053333rem;
+    height: .226667rem;
+    line-height: .226667rem;
+    background: #ff5877;
+    overflow: hidden;
+    padding: .013333rem .04rem;
+    color: #FFF;
+    border-radius: 2px;
+    z-index: 1001;
 }
 .fontRedColor {
   color: red !important;
