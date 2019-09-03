@@ -11,6 +11,7 @@
     "animate.css": "^3.7.2",
     "core-js": "^2.6.5",
     "mini-ui": "0.0.1-alpha",
+    "vant": "^2.1.8",
     "vue": "^2.6.10",
     "vue-router": "^3.1.3"
   },

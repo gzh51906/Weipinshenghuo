@@ -5,14 +5,9 @@ import axios from 'axios'
 import store from './vuex'
 
 //引入mint-ui和mui-ui ElementUI
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
-Vue.use(ElementUI);
-
-import MintUI from 'mint-ui'
-
-import 'element-ui/lib/theme-chalk/index.css';
-Vue.use(MintUI)
+import Vant from 'vant';
+import 'vant/lib/index.css';
+Vue.use(Vant);
 
 Vue.config.productionTip = false
 

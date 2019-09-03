@@ -5,19 +5,33 @@
     </transition>
 
     <!-- 底部菜单 -->
-    <mt-tabbar v-model="selected" @click.native="goto(selected)">
+    <!-- <mt-tabbar v-model="selected" @click.native="goto(selected)">
       <mt-tab-item
         :id="item.path"
         v-for="item in pages"
         :key="item.name"
         :class="{fontRedColor:item.path == selected}"
       >
-        <span  v-if="item.name=='Cart'"><code class="Cart_Num">{{cartlenth}}</code></span>
+   
         <img :src="item.img1" slot="icon" v-if="item.path == selected" />
         <img :src="item.img" slot="icon" v-else />
         {{item.title}}
       </mt-tab-item>
-    </mt-tabbar>
+    </mt-tabbar> -->
+
+    <van-tabbar v-model="active" @click.native="goto(selected)">
+  <van-tabbar-item 
+        :id="item.path"
+        v-for="item in pages"
+        :key="item.name"
+        :class="{fontRedColor:item.path == selected}"
+  >
+        <img :src="item.img1" slot="icon" v-if="item.path == selected" />
+        <img :src="item.img" slot="icon" v-else />
+    {{item.title}}
+    </van-tabbar-item>
+
+</van-tabbar>
   </div>
 </template>
 
@@ -84,97 +98,7 @@ export default {
 </script>
 
 <style>
-html {
-  font-size: 100px;
-}
-@media all and (max-width: 640px) {
-  html {
-    font-size: 100px;
-  }
-}
-@media all and (max-width: 624px) {
-  html {
-    font-size: 97.5px;
-  }
-}
-@media all and (max-width: 608px) {
-  html {
-    font-size: 95px;
-  }
-}
-@media all and (max-width: 592px) {
-  html {
-    font-size: 92.5px;
-  }
-}
-@media all and (max-width: 576px) {
-  html {
-    font-size: 90px;
-  }
-}
 
-@media all and (max-width: 560px) {
-  html {
-    font-size: 87.5px;
-  }
-}
-@media all and (max-width: 544px) {
-  html {
-    font-size: 85px;
-  }
-}
-@media all and (max-width: 528px) {
-  html {
-    font-size: 82.5px;
-  }
-}
-@media all and (max-width: 512px) {
-  html {
-    font-size: 80px;
-  }
-}
-@media all and (max-width: 496px) {
-  html {
-    font-size: 77.5px;
-  }
-}
-
-@media all and (max-width: 480px) {
-  html {
-    font-size: 75px;
-  }
-}
-
-@media all and (max-width: 464px) {
-  html {
-    font-size: 72.5px;
-  }
-}
-@media all and (max-width: 448px) {
-  html {
-    font-size: 70px;
-  }
-}
-@media all and (max-width: 432px) {
-  html {
-    font-size: 67.5px;
-  }
-}
-@media all and (max-width: 416px) {
-  html {
-    font-size: 65px;
-  }
-}
-@media all and (max-width: 400px) {
-  html {
-    font-size: 62.5px;
-  }
-}
-@media all and (max-width: 384px) {
-  html {
-    font-size: 60px;
-  }
-}
 
 * {
   margin: 0px;
@@ -215,32 +139,7 @@ li {
   line-height: 0.5rem;
   font-size: 0.22rem;
 }
-/* .mint-tabbar a span {
-    top: 0;
-    display: block;
-    width: 25px;
-    height: 25px;
-    margin: 0 auto;
-    background-size: 80% auto;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: absolute;
-    z-index: 1000;
-} */
-span code {
-    font-style: normal;
-    position: absolute;
-    right: 35%;
-    top: .053333rem;
-    height: .226667rem;
-    line-height: .226667rem;
-    background: #ff5877;
-    overflow: hidden;
-    padding: .013333rem .04rem;
-    color: #FFF;
-    border-radius: 2px;
-    z-index: 1001;
-}
+
 .fontRedColor {
   color: red !important;
 }

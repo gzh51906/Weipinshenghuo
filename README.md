@@ -1,6 +1,6 @@
 
 
-# (微品生活)团队分工
+# (易果生鲜)团队分工
 
 ## 项目文件分布
 
@@ -9,7 +9,7 @@
         routers  路由
     2.server 后端文件夹
 
-    2.wpsh  webApp文件夹
+    2.hcf  webApp文件夹
         assets  img和css
         pages/routers/vuex  => webApp相关
     (elementUI，mintUI，Vue-route,axios,vuex)
