@@ -5,33 +5,18 @@
     </transition>
 
     <!-- 底部菜单 -->
-    <!-- <mt-tabbar v-model="selected" @click.native="goto(selected)">
+    <mt-tabbar v-model="selected" @click.native="goto(selected)">
       <mt-tab-item
         :id="item.path"
         v-for="item in pages"
         :key="item.name"
         :class="{fontRedColor:item.path == selected}"
       >
-   
         <img :src="item.img1" slot="icon" v-if="item.path == selected" />
         <img :src="item.img" slot="icon" v-else />
         {{item.title}}
       </mt-tab-item>
-    </mt-tabbar> -->
-
-    <van-tabbar v-model="active" @click.native="goto(selected)">
-  <van-tabbar-item 
-        :id="item.path"
-        v-for="item in pages"
-        :key="item.name"
-        :class="{fontRedColor:item.path == selected}"
-  >
-        <img :src="item.img1" slot="icon" v-if="item.path == selected" />
-        <img :src="item.img" slot="icon" v-else />
-    {{item.title}}
-    </van-tabbar-item>
-
-</van-tabbar>
+    </mt-tabbar>
   </div>
 </template>
 
@@ -54,29 +39,36 @@ export default {
           title: "首页",
           path: "/home",
           name: "Home",
-          img: require("./assets/imgs/icon/blackhome.png"),
-          img1: require("./assets/imgs/icon/home.png")
+          img: require("./assets/imgs/icon/nav_home_selected.png"),
+          img1: require("./assets/imgs/icon/nav_home_active.png")
         },
         {
           title: "分类",
           path: "/category",
           name: "Category",
-          img: require("./assets/imgs/icon/kind.png"),
-          img1: require("./assets/imgs/icon/kind1.png")
+          img: require("./assets/imgs/icon/nav_classify_.png"),
+          img1: require("./assets/imgs/icon/nav_classify_active.png")
+        },
+         {
+          title: "吃饭吧",
+          path: "/chifanba",
+          name: "Chifanba",
+          img: require("./assets/imgs/icon/chifan.png"),
+          img1: require("./assets/imgs/icon/chifan.png")
         },
         {
           title: "购物车",
           path: "/cart",
           name: "Cart",
-          img: require("./assets/imgs/icon/cart.png"),
-          img1: require("./assets/imgs/icon/footer_icon_5.png")
+          img: require("./assets/imgs/icon/nav_list_.png"),
+          img1: require("./assets/imgs/icon/nav_list_active.png")
         },
         {
-          title: "我的",
+          title: "我的易果",
           path: "/mine",
           name: "Mine",
-          img: require("./assets/imgs/icon/redcapationl1.png"),
-          img1: require("./assets/imgs/icon/footer_icon_7.png")
+          img: require("./assets/imgs/icon/nav_user_.png"),
+          img1: require("./assets/imgs/icon/nav_user_active.png")
         }
       ],
       selected: "/home"
@@ -98,7 +90,97 @@ export default {
 </script>
 
 <style>
+html {
+  font-size: 100px;
+}
+@media all and (max-width: 640px) {
+  html {
+    font-size: 100px;
+  }
+}
+@media all and (max-width: 624px) {
+  html {
+    font-size: 97.5px;
+  }
+}
+@media all and (max-width: 608px) {
+  html {
+    font-size: 95px;
+  }
+}
+@media all and (max-width: 592px) {
+  html {
+    font-size: 92.5px;
+  }
+}
+@media all and (max-width: 576px) {
+  html {
+    font-size: 90px;
+  }
+}
 
+@media all and (max-width: 560px) {
+  html {
+    font-size: 87.5px;
+  }
+}
+@media all and (max-width: 544px) {
+  html {
+    font-size: 85px;
+  }
+}
+@media all and (max-width: 528px) {
+  html {
+    font-size: 82.5px;
+  }
+}
+@media all and (max-width: 512px) {
+  html {
+    font-size: 80px;
+  }
+}
+@media all and (max-width: 496px) {
+  html {
+    font-size: 77.5px;
+  }
+}
+
+@media all and (max-width: 480px) {
+  html {
+    font-size: 75px;
+  }
+}
+
+@media all and (max-width: 464px) {
+  html {
+    font-size: 72.5px;
+  }
+}
+@media all and (max-width: 448px) {
+  html {
+    font-size: 70px;
+  }
+}
+@media all and (max-width: 432px) {
+  html {
+    font-size: 67.5px;
+  }
+}
+@media all and (max-width: 416px) {
+  html {
+    font-size: 65px;
+  }
+}
+@media all and (max-width: 400px) {
+  html {
+    font-size: 62.5px;
+  }
+}
+@media all and (max-width: 384px) {
+  html {
+    font-size: 60px;
+  }
+}
 
 * {
   margin: 0px;
@@ -140,8 +222,22 @@ li {
   font-size: 0.22rem;
 }
 
-.fontRedColor {
-  color: red !important;
+span code {
+    font-style: normal;
+    position: absolute;
+    right: 35%;
+    top: .053333rem;
+    height: .226667rem;
+    line-height: .226667rem;
+    background: #ff5877;
+    overflow: hidden;
+    padding: .013333rem .04rem;
+    color: #FFF;
+    border-radius: 2px;
+    z-index: 1001;
 }
+/* .fontRedColor {
+  color: red !important;
+} */
 </style>
 

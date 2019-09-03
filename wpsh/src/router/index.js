@@ -8,6 +8,7 @@ import Mine from '../components/Mine/Mine.vue' //我的
 import Category from '../components/Category/Category.vue' //分类
 import Cart from '../components/Cart/Cart.vue' //购物车
 import Login from '../components/Login/Login.vue' //登录
+import Chifanba from '../components/Chifanba/Chifanba.vue' //吃饭吧
 import Reg from '../components/Reg/Reg.vue' //注册
 
 import axios from 'axios'
@@ -21,6 +22,11 @@ let router = new VueRouter({
             components: {
                 default: Home,
             }
+        },
+        {
+            name: 'Chifanba',
+            path: '/chifanba',
+            component: Chifanba,
         },
         {
             name: 'Category',
