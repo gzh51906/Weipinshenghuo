@@ -4,7 +4,7 @@ import router from './router'
 import axios from 'axios'
 import store from './vuex'
 
-//引入mint-ui和mui-ui ElementUI
+//引入vant
 import Vant from 'vant';
 import 'vant/lib/index.css';
 Vue.use(Vant);

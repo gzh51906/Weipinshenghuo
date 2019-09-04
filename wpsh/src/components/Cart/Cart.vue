@@ -1,5 +1,5 @@
 <template>
-  <div class="cart">
+  <!-- <div class="cart">
     <el-row :gutter="20"  v-for="item in cartlist" :key="item.goods_id" style="backgroud:#fff">
       <el-col :span="16">
         <el-col :span="6">
@@ -14,7 +14,7 @@
       <el-col :span="4" :offset="4">
       <el-button   @click="remove(item.goods_id)" id="cartTools"></el-button>
         <!-- <el-button type="text" icon="el-icon-delete" @click="remove(item.goods_id)">删除</el-button> -->
-      </el-col>
+      <!-- </el-col>
     </el-row>
     <el-row :gutter="50" align="bottom">
         <el-col :span="24">
@@ -25,9 +25,10 @@
                 <el-button type="danger">结 算</el-button>
             </el-col>
         </el-col>
-    </el-row>
+    </el-row> -->
     <!-- <img src="../../assets/" alt=""> -->
-  </div>
+  <!-- </div>  -->
+  <div>购物车</div>
 </template>
 
 <script>
