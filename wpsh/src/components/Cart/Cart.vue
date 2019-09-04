@@ -88,7 +88,7 @@ export default {
         //     // })
         // },
         goto(id){
-            // this.$router.push({name:'goods',params:{id}})
+            
             this.$router.push(`/goods/${id}`)
         }
     },
