@@ -20,6 +20,8 @@ export default {
                 // prev：前一次reduce的返回值
                 return prev+item.goods_price*item.qty
             },0)
+            
+            
         }
     },
 
@@ -32,7 +34,7 @@ export default {
         removeItem(state,id){
             state.cartlist = state.cartlist.filter(item=>item.goods_id!=id);
         },
-        changeQty(state,{qty,id}){console.log('changeQty:',qty,id)
+        changeQty(state,{qty,id}){
             state.cartlist = state.cartlist.map(item=>{
                 if(item.goods_id === id){
                     item.qty = qty;
