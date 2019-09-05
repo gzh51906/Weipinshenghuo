@@ -61,7 +61,7 @@ let router = new VueRouter({
         },
         {
             name:'GoodList',
-            path:'/GoodList/:datalist',
+            path:'/GoodList/:CategoryCode',
             component:GoodList
         },
         {

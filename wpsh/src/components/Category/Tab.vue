@@ -8,7 +8,7 @@
           v-show="idx===activeIndex"
           :key="item.CategoryName"
         >
-          <van-grid-item v-for="(i) in item" :key="i.CategoryCode" @click.native="goto(i.Childs)">
+          <van-grid-item v-for="(i) in item" :key="i.CategoryCode" @click.native="goto(i)">
             <van-image :src="i.PictureUrl" />
             <p>{{i.CategoryName}}</p>
           </van-grid-item>
@@ -63,16 +63,19 @@ export default {
       console.log(idx, e);
       this.activeIndex = idx;
     },
-    goto(datalist) {
+    goto(CategoryCode) {
       // this.$router.push({name,query:{id:123}})
       // this.$router.push({path:'/goods/123'})
-      this.$router.push({ name: "GoodList", params: { datalist } });
+      // @click.native="goto(i.Childs)
+      // this.$router.push({ name: "GoodList", params: { datalist } });
+       this.$router.push({ name: "GoodList", params: { CategoryCode } });
     }
   }
 };
 </script>
 <style>
 body {
+  background: #fff ;
   font-size: 12px !important;
   color: #000;
   font-family: "Avenir", "PingFang SC", "\5FAE\8F6F\96C5\9ED1";
@@ -84,13 +87,13 @@ body {
 }
 .van-tree-select__nav {
   position: fixed;
-  left: 0;
-  top: 40px;
-  float: left;
+  /* left: 0; */
+  /* top: 40px; */
+  /* float: left; */
   width: 84px;
-  height: 100%;
-  overflow: hidden;
-  z-index: 98;
+  height: 86%;
+  /* overflow: hidden; */
+  /* z-index: 100; */
 }
 .van-tree-select {
   height: 100% !important;
@@ -138,5 +141,11 @@ body {
 }
 [class*="van-hairline"]::after {
   border: none !important;
+}
+.van-tree-select__nav {
+    background-color: #f4f4f4 !important;
+}
+.van-search.van-search--show-action {
+    border-bottom: 1px solid #f0f0f0;
 }
 </style>
