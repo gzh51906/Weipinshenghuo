@@ -4,6 +4,7 @@ import router from './router'
 import axios from 'axios'
 import store from './vuex'
 
+import './assets/rem'
 //引入vant
 import Vant from 'vant';
 import 'vant/lib/index.css';

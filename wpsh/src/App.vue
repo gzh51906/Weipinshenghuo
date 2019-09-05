@@ -4,7 +4,7 @@
       <router-view></router-view>
     </transition>
   <van-tabbar v-model="selected"
-   z-index=999  
+   :z-index="999"
    active-color="#07c160"
    inactive-color="#8d8a8a">
   <van-tabbar-item
@@ -112,9 +112,9 @@ export default {
 
 <style>
 
-/* .fontRedColor {
-  color: red !important;
-} */
+.van-hairline--top-bottom{
+  z-index: 999;
+}
 html,
 body {
   height: 100%;
