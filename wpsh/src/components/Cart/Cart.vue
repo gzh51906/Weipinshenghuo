@@ -1,37 +1,60 @@
 <template>
-  <!-- <div class="cart">
-    <el-row :gutter="20"  v-for="item in cartlist" :key="item.goods_id" style="backgroud:#fff">
-      <el-col :span="16">
-        <el-col :span="6">
-            <img :src="item.goods_image" @click="goto(item.goods_id)"/>
-        </el-col>
-        <el-col :span="16" :offset="1">
-            <h4>{{item.goods_name}}</h4>
-            <p class="price"><span>{{item.goods_price}}</span></p>
-            <p><el-input-number :min="1" size="mini" v-model="item.qty" @change="changeQty($event,item.goods_id)"></el-input-number></p>
-        </el-col>
-      </el-col>
-      <el-col :span="4" :offset="4">
-      <el-button   @click="remove(item.goods_id)" id="cartTools"></el-button>
-        <!-- <el-button type="text" icon="el-icon-delete" @click="remove(item.goods_id)">删除</el-button> -->
-      <!-- </el-col>
-    </el-row>
-    <el-row :gutter="50" align="bottom">
-        <el-col :span="24">
-            <el-col :span="16" class="total price">
-                总计：<span>{{totalPrice.toFixed(2)}}</span> 
-            </el-col>
-            <el-col :span="8">
-                <el-button type="danger">结 算</el-button>
-            </el-col>
-        </el-col>
-    </el-row> -->
-    <!-- <img src="../../assets/" alt=""> -->
-  <!-- </div>  -->
-  <div>购物车</div>
+  <div>
+    <!-- <van-card
+      v-for="item in cartlist"
+      :key="item.goods_id"
+      :price="item.goods_price"
+      :title="item.goods_name"
+      thumb="https://img.yzcdn.cn/vant/t-thirt.jpg"
+    >
+    
+    
+        <van-button @click="remove(item.goods_id)" icon="delete" class="removesub"></van-button>
+      <div>
+        <van-stepper async-change v-model="item.qty"  @change="changeQty($event,item.goods_id)"/>
+      </div>
+    </van-card> -->
+    <van-row gutter="20" v-for="item in cartlist" :key="item.goods_id">
+  <van-col span="16">
+            <van-col :span="6">
+          <img :src="item.goods_image" />
+        </van-col>
+        <van-col :span="16" :offset="1">
+          <h4>{{item.goods_name}}</h4>
+          <strong class="red">￥<b>{{item.goods_price}}</b></strong>
+         
+        </van-col>
+  </van-col>
+  <van-col span="8" type="flex" justify="center">
+      <p class="removesub">
+      <van-button @click="remove(item.goods_id)" icon="delete" ></van-button>
+      </p>
+        <p>
+        <van-stepper async-change v-model="item.qty"  @change="changeQty($event,item.goods_id)"/>
+        </p>
+  </van-col>
+   
+   </van-row>
+
+    <!-- 结算栏 -->
+   
+    <van-submit-bar id="submitBar" :price="totalPrice*100" button-text="去结算">
+      <van-checkbox>全选</van-checkbox>
+    </van-submit-bar>
+  </div>
 </template>
 
 <script>
+import Vue from 'vue';
+import { SubmitBar } from 'vant';
+import { Stepper } from 'vant';
+import { Icon } from 'vant';
+import { Toast } from 'vant';
+
+Vue.use(Toast);
+Vue.use(Icon);
+Vue.use(SubmitBar);
+Vue.use(Stepper);
 import {mapState,mapGetters,mapMutations,mapActions} from 'vuex';
 
 export default {
@@ -63,12 +86,21 @@ export default {
         // ...mapMutations(['changeQty','removeItem']),
         ...mapMutations({
             changeQty:'changeQty',
-            remove:'removeItem',
-            clear:function(commit,payload){
-                commit('clearCart')
-            }
+            remove:'removeItem'
         }),
         ...mapActions(['changeQtyAsync']),
+
+
+        onChange(value) {
+          Toast.loading({ forbidClick: true });
+
+            setTimeout(() => {
+                Toast.clear();
+                this.value = value;
+            }, 500);
+
+            },
+        
         // changeQtyAsync(qty,id){
         //     this.$store.dispatch('changeQtyAsync',{qty,id})
         // },
@@ -93,20 +125,32 @@ export default {
         }
     },
   created() {
-    console.log(this);
+
   }
 };
 </script>
 
 <style>
 #cartTools {
-    width: 40px;
-    text-align: center;
-    overflow: hidden;
-    margin-left: 5px;
-    position: relative;
-    background: url(../../assets/imgs/icon/edit_bg.png) no-repeat center;
-    background-size: 25px auto;
-
+  width: 40px;
+  text-align: center;
+  overflow: hidden;
+  margin-left: 5px;
+  position: relative;
+  background: url(../../assets/imgs/icon/edit_bg.png) no-repeat center;
+  background-size: 25px auto;
+}
+#submitBar {
+  bottom: 51px;
+};
+.removesub{
+ text-align: center;
+}
+.van-row{
+    background: #fff;
+    margin-top:20px ;
+}
+.red{
+color: #fb3d3d;
 }
 </style>

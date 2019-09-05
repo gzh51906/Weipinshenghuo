@@ -4,14 +4,16 @@
       <router-view></router-view>
     </transition>
 
-  <van-tabbar v-model="selected" >
+    
+  <van-tabbar v-model="selected" z-index=99 >
   <van-tabbar-item
    v-for="item in pages" 
    :id="item.path" 
    :key="item.name"
    :to="item.path" 
    :name="item.home" 
-   :icon="item.img">
+   :icon="item.img"
+   >
     <img :src="item.img1" slot="icon" v-if="item.path == selected" />
     <img :src="item.img" slot="icon" v-else />
     {{item.title}}
@@ -95,5 +97,14 @@ export default {
 /* .fontRedColor {
   color: red !important;
 } */
+html,
+body {
+  height: 100%;
+  background: #f8f8f8;
+}
+.app {
+  height: 100%;
+  overflow: scroll;
+}
 </style>
 
