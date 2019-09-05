@@ -115,7 +115,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
 .icon-list li {
   width: 20%;
