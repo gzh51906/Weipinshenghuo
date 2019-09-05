@@ -3,11 +3,11 @@ import App from './App.vue'
 import router from './routers'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import http from './http.js'
+// import http from './http.js'
 Vue.use(ElementUI)
 
-Vue.config.productionTip = false
-Vue.prototype.$http = http
+// Vue.config.productionTip = false
+// Vue.prototype.$http = http
 new Vue({
   router,
   render: h => h(App),

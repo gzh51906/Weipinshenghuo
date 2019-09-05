@@ -1,4 +1,5 @@
 <template>
+  
   <van-row class="first-screen-top">
     <van-col span="6" class="first-screen-search">
       <a href="javascript:;" class="btn"></a>
@@ -6,18 +7,40 @@
     </van-col>
     <van-col span="17" class="first-screen-adress">
       广州
-      <i class="arrow"></i>
+      <!-- <van-button type="primary" @click="showPopup" class="arrow">111</van-button>
+      <van-popup v-model="show">内容</van-popup> -->
+      <i class="arrow"></i>s
     </van-col>
   </van-row>
 </template>
 <script>
-export default {};
+import Vue from "vue";
+import { Popup } from "vant";
+
+Vue.use(Popup);
+export default {
+  data() {
+    return {
+      show: false
+    };
+  },
+
+  methods: {
+    showPopup() {
+      this.show = true;
+    }
+  }
+};
 </script>
 <style scoped>
+* {
+  padding: 0;
+  margin: 0;
+}
 .first-screen-top {
   z-index: 100;
   position: fixed;
-  top: 0;
+  top: -20px;
   left: 0;
   box-sizing: border-box;
   width: 100%;
@@ -68,9 +91,9 @@ export default {};
 .first-screen-adress .arrow {
   display: inline-block;
   width: 8px;
-  height:4.33px;
+  height: 4.33px;
   margin: 0 0 0 5.333px;
-  vertical-align:1px;
+  vertical-align: 1px;
   background: url(//img05.yiguoimg.com/e/web/161222/01858/110628/arrow.png)
     no-repeat;
   background-size: 100% 100%;

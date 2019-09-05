@@ -31,6 +31,10 @@
         </ul>
       </div>
     </div>
+    <div class="pagefooter pt pb">
+      <p>沪IPC备09008015号</p>
+      <p>上海易果电子商务有限公司</p>
+    </div>
   </div>
 </template>
 <script>
@@ -195,5 +199,11 @@ export default {
   height: 23px;
   line-height: 23px;
   margin-right: 1px;
+}
+.pagefooter {
+  line-height: 20px;
+  text-align: center;
+  color: #8d8a8a;
+  padding: 10px 0 70px 0;
 }
 </style>
