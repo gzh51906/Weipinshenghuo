@@ -3,9 +3,10 @@
     <transition enter-active-class="fadeIn animated" mode="out-in">
       <router-view></router-view>
     </transition>
-
-    
-  <van-tabbar v-model="selected" z-index=99 >
+  <van-tabbar v-model="selected"
+   z-index=999  
+   active-color="#07c160"
+   inactive-color="#8d8a8a">
   <van-tabbar-item
    v-for="item in pages" 
    :id="item.path" 
@@ -14,11 +15,28 @@
    :name="item.home" 
    :icon="item.img"
    >
-    <img :src="item.img1" slot="icon" v-if="item.path == selected" />
-    <img :src="item.img" slot="icon" v-else />
     {{item.title}}
   </van-tabbar-item>
 </van-tabbar>
+<!-- <van-tabbar
+  v-model="selected"
+  z-index=999  
+  active-color="#07c160"
+  inactive-color="#8d8a8a">
+  <van-tabbar-item 
+    v-for="item in pages" 
+   :id="item.path" 
+   :key="item.name"
+   :to="item.path" 
+   :name="item.home" >
+    <span>{{item.title}}</span>
+    <img
+      slot="icon"
+      slot-scope="props"
+      :src="props.active ? icon.active : icon.normal"
+    >
+  </van-tabbar-item>
+</van-tabbar> -->
   </div>
 </template>
 
