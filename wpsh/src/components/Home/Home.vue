@@ -5,7 +5,7 @@
     <fenlei></fenlei>
     <kuanghuan></kuanghuan>
     <tuijian></tuijian>
-    <con></con>
+    <con1></con1>
     <xinpin></xinpin>
     <list></list>
     <same></same>
@@ -24,7 +24,7 @@ import banner from "./banner.vue";
 import fenlei from "./fenlei.vue";
 import kuanghuan from "./kuanghuan.vue";
 import tuijian from "./tuijian.vue";
-import con from "./con.vue";
+import con1 from "./con1.vue";
 import xinpin from "./xinpin.vue";
 import list from "./list.vue";
 import same from "./same.vue";
@@ -36,7 +36,7 @@ export default {
     fenlei,
     kuanghuan,
     tuijian,
-    con,
+    con1,
     xinpin,
     list,
     same

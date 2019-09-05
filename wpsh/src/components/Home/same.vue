@@ -89,7 +89,7 @@ export default {
   height: 2.71px;
   margin-top: -1.208px;
   content: "";
-  background: url(../../assets/imgs/home/1.png) 0 0 no-repeat;
+  /* background: url(../../assets/imgs/home/1.png) 0 0 no-repeat; */
   background-size: auto 100%;
 }
 .prolist2 .tt h3:before {
