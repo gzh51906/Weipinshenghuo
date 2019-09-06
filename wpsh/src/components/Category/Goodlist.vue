@@ -39,22 +39,17 @@ export default {
   methods:{
     // 跳转到详情
      goto(id){
-            
             this.$router.push({name:'Details',params:{id}})
-        }
+        },
+         totopClick(){
+       target.scrollIntoView();
+    }
   },
   created() {},
   mounted() {
     this.data = this.$route.params.CategoryCode.Childs;
-    
-    
   },
 
-  methods: {
-    totopClick(){
-       target.scrollIntoView();
-    }
-  }
 };
 </script>
 <style scoped>
