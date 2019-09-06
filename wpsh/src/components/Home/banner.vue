@@ -1,5 +1,5 @@
 <template>
-  <van-row class="first-screen-banner">
+  <van-row class="first-screen-banner van-row">
     <van-col span="24">
       <van-swipe
         :autoplay="3000"
@@ -34,6 +34,15 @@ export default {
 };
 </script>
 <style scoped>
+*{
+  padding: 0;
+  margin: 0;
+}
+/* #app .van-row{
+  padding: 0;
+   /* margin: 0; */
+   /* margin-top:40px; */
+
 .first-screen-banner {
   position: relative;
 }

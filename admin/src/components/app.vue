@@ -15,8 +15,8 @@
               商品管理
             </template>
             <el-menu-item-group>
-              <el-menu-item index="/items/create">新建商品</el-menu-item>
-              <el-menu-item index="/items/list">商品列表</el-menu-item>
+              <el-menu-item index="/categories/create">新建商品</el-menu-item>
+              <el-menu-item index="/categories/list">商品列表</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-submenu index="2">
@@ -25,8 +25,8 @@
               用户管理
             </template>
             <el-menu-item-group>
-              <el-menu-item index="/categories/create">新建用户</el-menu-item>
-              <el-menu-item index="/categories/list">用户列表</el-menu-item>
+              <el-menu-item index="/admin_users/create">新建用户</el-menu-item>
+              <el-menu-item index="/admin_users/list">用户列表</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-submenu index="3">
@@ -35,7 +35,7 @@
               订单管理
             </template>
             <el-menu-item-group>
-              <el-menu-item index="/admin_users/create">订单列表</el-menu-item>
+              <el-menu-item index="/">订单列表</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>
@@ -53,13 +53,6 @@
           </el-dropdown>
           <span>凉风</span>
         </el-header>
-        <!-- <el-main>
-          <el-table :data="tableData">
-            <el-table-column prop="date" label="日期" width="140"></el-table-column>
-            <el-table-column prop="name" label="姓名" width="120"></el-table-column>
-            <el-table-column prop="address" label="地址"></el-table-column>
-          </el-table>
-        </el-main>-->
         <el-main>
           <router-view></router-view>
         </el-main>

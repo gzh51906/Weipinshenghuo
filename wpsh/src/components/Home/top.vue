@@ -40,7 +40,7 @@ export default {
 .first-screen-top {
   z-index: 100;
   position: fixed;
-  top: -20px;
+  top: 0px;
   left: 0;
   box-sizing: border-box;
   width: 100%;
