@@ -1,6 +1,6 @@
 <template>
   <van-grid :column-num="4" id="first-screen-menu">
-    <van-grid-item v-for="value in fenlei" :key="value.title" class="one">
+    <van-grid-item v-for="value in fenlei" :key="value.title" class="one" @click="gotolist()">
       <div class="one1">
         <i>
           <img :src="value.src" />
@@ -57,6 +57,12 @@ export default {
         }
       ]
     };
+  }
+  ,
+  methods:{
+    gotolist(){
+      this.$router.push('/GoodList/11111')
+    }
   }
 };
 </script>
