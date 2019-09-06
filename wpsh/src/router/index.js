@@ -11,7 +11,7 @@ import Login from '../components/Login/Login.vue' //登录
 import Chifanba from '../components/Chifanba/Chifanba.vue' //吃饭吧
 import Reg from '../components/Reg/Reg.vue' //注册
 import GoodList from '../components/Category/Goodlist.vue' //商品列表
-import Details from '../components/Details/Details.vue' //商品列表
+import Details from '../components/Details/Details.vue' //详情
 import axios from 'axios'
 import store from '../vuex'
 

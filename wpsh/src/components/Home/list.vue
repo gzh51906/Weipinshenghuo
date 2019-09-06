@@ -2,8 +2,8 @@
   <div class="prolist pt">
     <div class="blockwrap prolist-blockwrap">
       <ul>
-        <li v-for="item in friut" :key="item.subTitle">
-          <div class="proitem">
+        <li v-for="item in friut" :key="item.subTitle" >
+          <div class="proitem" @click="gotoXiangqing(item.commodityCode)">
             <div class="pic">
               <a href="javascript:;">
                 <img :src="item.pictureUrl" />
@@ -40,6 +40,12 @@ export default {
     return {
       friut: []
     };
+  },
+  methods:{
+    // 跳转到详情
+     gotoXiangqing(id){
+            this.$router.push({name:'Details',params:{id}})
+        }
   },
   created() {
     axios
