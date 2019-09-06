@@ -73,7 +73,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 body {
   background: #fff ;
   font-size: 12px !important;

@@ -1,6 +1,6 @@
 <template>
   <div class="goodlist">
-    <van-row v-for="item in data" :key="item.CommodityCode">
+    <van-row v-for="item in data" :key="item.CommodityCode" @click.native="goto(item.CommodityCode)">
       <van-col span="8">
         <van-image width="105" height="105" :src="item.SmallPic" />
       </van-col>
@@ -38,16 +38,25 @@ export default {
       data: []
     };
   },
+  methods:{
+    // 跳转到详情
+     goto(id){
+            
+            this.$router.push({name:'Details',params:{id}})
+        }
+  },
   created() {},
   mounted() {
     // console.log("GoodList:", this.$route, this.$route.params);
     this.data = this.$route.params.CategoryCode.Childs;
+    
+    
   },
 
   method: {}
 };
 </script>
-<style>
+<style scoped>
 body {
   background: #f4f4f4;
 }
