@@ -1,5 +1,5 @@
 <template>
-  <div class="goodlist">
+  <div class="goodlist" id="target">
     <van-row v-for="item in data" :key="item.CommodityCode">
       <van-col span="8">
         <van-image width="105" height="105" :src="item.SmallPic" />
@@ -22,7 +22,7 @@
       <a class="num">
         <i>1</i>
       </a>
-      <a href="#" id="gotop" class="top"></a>
+      <a href="#" id="gotop" class="top" @click="totopClick"></a>
     </div>
 
     <div class="noMore" style>
@@ -40,11 +40,14 @@ export default {
   },
   created() {},
   mounted() {
-    // console.log("GoodList:", this.$route, this.$route.params);
     this.data = this.$route.params.CategoryCode.Childs;
   },
 
-  method: {}
+  methods: {
+    totopClick(){
+       target.scrollIntoView();
+    }
+  }
 };
 </script>
 <style>
