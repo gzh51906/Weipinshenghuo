@@ -7,7 +7,7 @@
         </div>
         <ul class="twoproduct">
           <li v-for="(ele,idx) in item.list" :key="idx">
-            <div class="proitem">
+            <div class="proitem" @click="gotoXiangqing(ele.commodityCode)">
               <div class="pic">
                 <a href="javascript:;">
                   <img :src="ele.pictureUrl" />
@@ -40,6 +40,12 @@ export default {
     return {
       list: []
     };
+  },
+  methods:{
+    // 跳转到详情
+     gotoXiangqing(id){
+            this.$router.push({name:'Details',params:{id}})
+        }
   },
   created() {
     axios

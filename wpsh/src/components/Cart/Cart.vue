@@ -1,41 +1,33 @@
 <template>
-  <div>
-    <!-- <van-card
-      v-for="item in cartlist"
-      :key="item.goods_id"
-      :price="item.goods_price"
-      :title="item.goods_name"
-      thumb="https://img.yzcdn.cn/vant/t-thirt.jpg"
-    >
-    
-    
-        <van-button @click="remove(item.goods_id)" icon="delete" class="removesub"></van-button>
-      <div>
-        <van-stepper async-change v-model="item.qty"  @change="changeQty($event,item.goods_id)"/>
-      </div>
-    </van-card> -->
-    <van-row gutter="20" v-for="item in cartlist" :key="item.goods_id">
-  <van-col span="16">
+  <div class="cart">
+    <div v-if="cartlist && cartlist.length>0">
+    <van-row  gutter="0" v-for="item in cartlist" :key="item.CommodityCode">
+      <van-col span="2" class="check">
+        <van-checkbox v-model="checked" checked-color="#07c160"></van-checkbox>
+      </van-col>
+  <van-col span="15" class="leftvant">
             <van-col :span="6">
-          <img :src="item.goods_image" />
+          <img :src="item.SmallPic" class="SmallPic" @click="goto(item.CommodityCode)"/>
         </van-col>
-        <van-col :span="16" :offset="1">
-          <h4>{{item.goods_name}}</h4>
-          <strong class="red">￥<b>{{item.goods_price}}</b></strong>
-         
+        <van-col :span="18" :offset="1" class="vantzhong">
+          <h4>{{item.CommodityName}}</h4>
+          <strong class="red">￥<b>{{item.SellPrice}}</b></strong>
+           <span class="bl">￥{{item.OriginalPrice}}</span>
         </van-col>
   </van-col>
-  <van-col span="8" type="flex" justify="center">
-      <p class="removesub">
-      <van-button @click="remove(item.goods_id)" icon="delete" ></van-button>
+  <van-col span="7" type="flex" justify="center">
+      <p class="removep"> 
+      <i class="removesub" @click="remove(item.CommodityCode)"></i>
       </p>
         <p>
-        <van-stepper async-change v-model="item.qty"  @change="changeQty($event,item.goods_id)"/>
+        <van-stepper  v-model="item.qty" async-change integer :max="item.MaxLimitCount" @change="changeQty($event,item.CommodityCode)"/>
         </p>
   </van-col>
    
    </van-row>
-
+</div>
+<div v-else class="nogoods line-top" style=""><div class="icon"></div> <p>购物车空空的，快去逛逛吧！</p> 
+<div class="btn" @click="gotohome()"><a>去逛逛</a></div></div>
     <!-- 结算栏 -->
    
     <van-submit-bar id="submitBar" :price="totalPrice*100" button-text="去结算">
@@ -50,7 +42,8 @@ import { SubmitBar } from 'vant';
 import { Stepper } from 'vant';
 import { Icon } from 'vant';
 import { Toast } from 'vant';
-
+import { Checkbox, CheckboxGroup } from 'vant';
+Vue.use(Checkbox).use(CheckboxGroup);
 Vue.use(Toast);
 Vue.use(Icon);
 Vue.use(SubmitBar);
@@ -58,6 +51,11 @@ Vue.use(Stepper);
 import {mapState,mapGetters,mapMutations,mapActions} from 'vuex';
 
 export default {
+  data(){
+    return {
+      checked: true
+    };
+  },
     computed:{
         // cartlist(){
         //     return this.$store.state.cart.cartlist
@@ -84,44 +82,23 @@ export default {
     },
     methods:{
         // ...mapMutations(['changeQty','removeItem']),
-        ...mapMutations({
-            changeQty:'changeQty',
-            remove:'removeItem'
-        }),
-        ...mapActions(['changeQtyAsync']),
-
-
-        onChange(value) {
-          Toast.loading({ forbidClick: true });
-
-            setTimeout(() => {
-                Toast.clear();
-                this.value = value;
-            }, 500);
-
-            },
+        // ...mapMutations({
+        //     changeQty:'changeQty',
+        //     remove:'removeItem'
+        // }),
+       remove(goods_id) {
+          this.$store.commit("removeItem", goods_id);
+        },
+        changeQty(qty, id) {
+          this.$store.commit("changeQty", { qty, id });
+        },
+      gotohome(){
+        this.$router.push({name:'Home'})
+      },
         
-        // changeQtyAsync(qty,id){
-        //     this.$store.dispatch('changeQtyAsync',{qty,id})
-        // },
-        // remove(goods_id){
-        //     this.$store.commit('removeItem',goods_id)
-        // },
-        // changeQty(qty,id){
-        //     this.$store.commit('changeQty',{qty,id})
-        //     // this.$store.dispatch('changeQtyAsync',{qty,id})
-        //     // axios.get('http://localhost:1906/goods/kucun').then(({data})=>{
-        //     //     let kucun = data.data;
-        //     //     // 库存不足
-        //     //     if(qty>kucun){
-        //     //         qty = kucun;
-        //     //     }
-        //     //     this.$store.commit('changeQty',{qty,id})
-        //     // })
-        // },
         goto(id){
             
-            this.$router.push(`/goods/${id}`)
+            this.$router.push({name:'Details',params:{id}})
         }
     },
   created() {
@@ -130,27 +107,101 @@ export default {
 };
 </script>
 
-<style>
-#cartTools {
-  width: 40px;
-  text-align: center;
-  overflow: hidden;
-  margin-left: 5px;
+<style scoped>
+/* .cart{
+  font-size: 12px;
+} */
+.SmallPic{
+  display: block;
+  width: 2.7rem;
+  height: 2.7rem;
+}
+h4{
+  margin-bottom: 1rem;
+  line-height: .56rem;
+  font-size: .32rem;
+}
+.bl {
+    margin: 0 0 0 .3rem;
+    text-decoration: line-through;
+    line-height: .2rem;
+    font-size: .34rem;
+    color: #ccc;
+}
+.removesub{
+    display: block;
+    width: 1.2rem;
+    height: 1.2rem;
+        margin-top: .3rem;
+    margin-left: 1.2rem;
+    margin-bottom: 1rem;
+    background: url(//img07.yiguoimg.com/d/web/180119/01642/141511/del.png) center right no-repeat;
+    background-size: 0.48rem 0.5rem;
+ 
+}
+.leftvant{
   position: relative;
-  background: url(../../assets/imgs/icon/edit_bg.png) no-repeat center;
-  background-size: 25px auto;
+}
+.vantzhong{
+    position: absolute;
+    width: 5.2rem;
+    left: 2.3rem;
+    top: .3rem;
 }
 #submitBar {
   bottom: 51px;
 };
-.removesub{
- text-align: center;
+.removep{
+  text-align: right
 }
+
 .van-row{
     background: #fff;
-    margin-top:20px ;
+    margin-top:.3rem;
+    padding: 5px;
 }
 .red{
 color: #fb3d3d;
+font-weight: 500;
+font-size: .32rem
+}
+.van-stepper{
+  text-align: right;
+}
+.check{
+  margin: 60px 0
+}
+.nogoods {
+    position: relative;
+    padding: 1.8rem 0 1.75rem;
+    background: #fff;
+    text-align: center;
+}
+.nogoods .icon {
+    width: 100%;
+    height: 3.6rem;
+    background: url(//img07.yiguoimg.com/d/web/180313/013112/195558/img_nogoods@3x.png) no-repeat center;
+    background-size: auto 100%;
+}
+.nogoods p {
+    padding: 1rem 0 .5rem;
+    font-size: .42rem;
+    color: #808080;
+}
+.nogoods .btn {
+    height: 1.2rem;
+}
+.nogoods .btn a {
+    position: relative;
+    display: inline-block;
+    width: 4.5rem;
+    height: 1.2rem;
+    border: 1px solid #11b57c;
+    border-radius: 6px;
+    line-height: 1.2rem;
+    font-size: .5rem;
+    color: #11b57c;
+    text-decoration: none;
+    outline: 0;
 }
 </style>
