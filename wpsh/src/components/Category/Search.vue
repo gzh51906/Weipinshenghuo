@@ -13,7 +13,7 @@ export default {
     }
 };
 </script>
-<style>
+<style scoped>
 /* .van-search{
     height: 1.35rem;
     width: 100%;

@@ -56,44 +56,32 @@ export default {
       }).map(function(item) {
         return item.Childs;
       });
-      console.log(data);
-      console.log(this.recommend);
     },
+
     changeIdx(idx, e) {
-      console.log(idx, e);
       this.activeIndex = idx;
     },
     goto(CategoryCode) {
-      // this.$router.push({name,query:{id:123}})
-      // this.$router.push({path:'/goods/123'})
-      // @click.native="goto(i.Childs)
-      // this.$router.push({ name: "GoodList", params: { datalist } });
-       this.$router.push({ name: "GoodList", params: { CategoryCode } });
+      this.$router.push({ name: "GoodList", params: { CategoryCode } });
     }
   }
 };
 </script>
-<style>
+<style scoped>
 body {
-  background: #fff ;
+  background: #fff !important;
   font-size: 12px !important;
   color: #000;
   font-family: "Avenir", "PingFang SC", "\5FAE\8F6F\96C5\9ED1";
 }
 .van-tree-select {
-  padding-top: 40px;
+  padding-top: 54px;
   padding-bottom: 50px;
-  /* height: 100% !important; */
 }
 .van-tree-select__nav {
   position: fixed;
-  /* left: 0; */
-  /* top: 40px; */
-  /* float: left; */
   width: 84px;
   height: 86%;
-  /* overflow: hidden; */
-  /* z-index: 100; */
 }
 .van-tree-select {
   height: 100% !important;
@@ -143,9 +131,9 @@ body {
   border: none !important;
 }
 .van-tree-select__nav {
-    background-color: #f4f4f4 !important;
+  background-color: #f4f4f4 !important;
 }
 .van-search.van-search--show-action {
-    border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
 }
 </style>
