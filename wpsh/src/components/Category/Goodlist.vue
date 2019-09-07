@@ -19,10 +19,8 @@
       </van-col>
     </van-row>
     <div class="option">
-      <a class="num">
-        <i>1</i>
-      </a>
-      <a href="#" id="gotop" class="top"></a>
+      
+      <a href="#" id="gotop" class="top" @click="totopClick"></a>
     </div>
 
     <div class="noMore" style>
@@ -41,19 +39,17 @@ export default {
   methods:{
     // 跳转到详情
      goto(id){
-            
             this.$router.push({name:'Details',params:{id}})
-        }
+        },
+         totopClick(){
+       target.scrollIntoView();
+    }
   },
   created() {},
   mounted() {
-    // console.log("GoodList:", this.$route, this.$route.params);
     this.data = this.$route.params.CategoryCode.Childs;
-    
-    
   },
 
-  method: {}
 };
 </script>
 <style scoped>
@@ -158,33 +154,6 @@ body {
   right: 10px;
   z-index: 100;
   height: 88px;
-}
-.option .num {
-  z-index: 100;
-  position: relative;
-  display: block;
-  width: 33px;
-  height: 33px;
-  background: url(//img05.yiguoimg.com/d/web/180508/01311/150610/cart1.png)
-    no-repeat;
-  background-size: 100%;
-}
-.option .num i {
-  position: absolute;
-  right: -5px;
-  top: -5px;
-  min-width: 5px;
-  height: 15px;
-  width: 9px;
-  padding: 0 2px;
-  border: 1px solid #fff;
-  border-radius: 5px;
-  background: #ff6353;
-  line-height: 15px;
-  font-size: 12px;
-  font-style: normal;
-  color: #fff;
-  text-align: center;
 }
 .option .top {
   display: block;

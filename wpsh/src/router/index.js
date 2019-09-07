@@ -69,7 +69,12 @@ let router = new VueRouter({
             name: 'Details',
             path: '/details/:id',
             component: Details
-        }
+        },
+        {
+            name: 'Reg',
+            path: '/Reg',
+            component: Reg
+        },
 
     ],
     scrollBehavior(to, from, savedPosition) {
