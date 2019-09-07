@@ -56,11 +56,11 @@ export default {
       }).map(function(item) {
         return item.Childs;
       });
-      console.log(data);
-      console.log(this.recommend);
+      // console.log(data);
+      // console.log(this.recommend);
     },
     changeIdx(idx, e) {
-      console.log(idx, e);
+      // console.log(idx, e);
       this.activeIndex = idx;
     },
     goto(CategoryCode) {

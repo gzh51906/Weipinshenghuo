@@ -154,7 +154,7 @@ export default {
         this.data={
           ...data.Data.CommodityInfo
         }
-        console.log(this.data);
+        
     },
     onClickIcon() {
       Toast('加入购物车成功');
@@ -189,7 +189,7 @@ export default {
       
      let {id} = this.$route.params;
      this.getData(id);
-      console.log(this.$store.state.cart.cartlist);
+     
     },
     // mounted(){
     //     console.log('mounted:',this.$route)
