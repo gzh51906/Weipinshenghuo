@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="prolist2 prolistBackground pb pt" v-for="(item,index) in list" :key="index">
+    <div class="prolist2 prolistBackground pb pt" v-for="(item) in list" :key="item.componentBase.customComponentName">
       <div class="blockwrap">
         <div class="tt">
-          <h3>{{item.title}}</h3>
+          <h3>{{item.componentBase.customComponentName}}</h3>
         </div>
         <ul class="twoproduct">
-          <li v-for="(ele,idx) in item.list" :key="idx">
+          <li v-for="(ele,idx) in item.commoditysComponentList" :key="idx">
             <div class="proitem" @click="gotoXiangqing(ele.commodityCode)">
               <div class="pic">
                 <a href="javascript:;">
@@ -45,26 +45,21 @@ export default {
       list: []
     };
   },
-  methods:{
+  methods: {
     // 跳转到详情
-     gotoXiangqing(id){
-            this.$router.push({name:'Details',params:{id}})
-        }
+    gotoXiangqing(id) {
+      this.$router.push({ name: "Details", params: { id } });
+    }
   },
   created() {
-    axios
-      .get("https://www.easy-mock.com/mock/5d6f99f7f16efd32ea5f0eef/list")
-      .then(({ data }) => {
-        // console.log(data);
-        data.group.Data.templateComponentList.forEach(element => {
-          let obj = {};
-          obj.title = element.componentBase.customComponentName;
-          obj.list = element.commoditysComponentList;
-          this.list.push(obj);
-        });
-      });
-    console.log(this.list);
+    axios.post("http://localhost:1906/getindexdata").then(({ data }) => {
+      // console.log(data);
+
+      this.list = data.data[0].same;
+      // console.log(this.list);
+    });
   }
+ 
 };
 </script>
 <style scoped>

@@ -2,7 +2,7 @@
   <div class="prolist pt">
     <div class="blockwrap prolist-blockwrap">
       <ul>
-        <li v-for="item in friut" :key="item.subTitle" >
+        <li v-for="item in friut" :key="item.subTitle">
           <div class="proitem" @click="gotoXiangqing(item.commodityCode)">
             <div class="pic">
               <a href="javascript:;">
@@ -41,20 +41,19 @@ export default {
       friut: []
     };
   },
-  methods:{
+  methods: {
     // 跳转到详情
-     gotoXiangqing(id){
-            this.$router.push({name:'Details',params:{id}})
-        }
+    gotoXiangqing(id) {
+      this.$router.push({ name: "Details", params: { id } });
+    }
   },
   created() {
-    axios
-      .get("https://www.easy-mock.com/mock/5d6f99f7f16efd32ea5f0eef/list")
-      .then(({ data }) => {
-        // console.log(data);
-        this.friut = data.list.Data.commoditysComponentList;
-        // console.log(this.friut);
-      });
+    axios.post("http://localhost:1906/getindexdata").then(({ data }) => {
+      // console.log(data);
+
+      this.friut = data.data[0].list;
+      // console.log(this.friut);
+    });
   }
 };
 </script>
