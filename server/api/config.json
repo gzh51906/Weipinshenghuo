@@ -1,5 +1,0 @@
-{
-    "PORT": 5786,
-    "DBurl": "mongodb://localhost:27017",
-    "DBname": "mia"
-}
