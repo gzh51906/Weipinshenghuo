@@ -45,28 +45,68 @@ export default {
     this.getData();
   },
 
-  methods: {
-    async getData() {
-      let { data } = await this.$axios.get(
-        "https://www.easy-mock.com/mock/5d6fca15b3db060775b1f0ff/ygsx/goodslist",
-        {}
-      );
-      this.recommend = data.Data.CategoryList.map(function(item) {
-        return item;
-      }).map(function(item) {
-        return item.Childs;
-      });
-      // console.log(data);
-      // console.log(this.recommend);
-    },
+  // methods: {
+  //   async getData() {
+  //     let { data } = await this.$axios.get(
+  //       "https://www.easy-mock.com/mock/5d6fca15b3db060775b1f0ff/ygsx/goodslist",
+  //       {}
+  //     );
+  //     this.recommend = data.Data.CategoryList.map(function(item) {
+  //       return item;
+  //     }).map(function(item) {
+  //       return item.Childs;
+  //     });
+  //     // console.log(data);
+  //     // console.log(this.recommend);
+  //   },
 
-    changeIdx(idx, e) {
-      // console.log(idx, e);
-      this.activeIndex = idx;
-    },
-    goto(CategoryCode) {
-      this.$router.push({ name: "GoodList", params: { CategoryCode } });
-    }
+  //   changeIdx(idx, e) {
+  //     // console.log(idx, e);
+  //     this.activeIndex = idx;
+  //   },
+  //   goto(CategoryCode) {
+  //     this.$router.push({ name: "GoodList", params: { CategoryCode } });
+  //   }
+  // },
+  methods:{
+    async getData(){
+         // 设置请求头
+         this.$axios.interceptors.request.use(
+          config => {
+              config.headers.appName = '3000025';
+              return config;
+          },
+          error => {
+              return Promise.reject(error);
+          })
+    
+         let {data} = await this.$axios.post("https://b2capigateway.yiguo.com/api/commodityapi/Commodity/GetAllCategory",{
+          head:{
+            CityCode: "512",
+            CityId: "c8dbd17f-a8e0-43b1-b9ce-de1efdc2670e",
+            DeviceId: "98d0667521ac0e5e44c623a83d48258d",
+            DistrictId: "2252dc4d-0069-4c0f-b60f-21ce5607dd46",
+            LoginToken: "",
+            MobileOS: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
+            Token: ""
+          }
+        })
+        // 解构 ，拿到数据
+            this.recommend = data.Data.CategoryList.map(function(item) {
+                return item;
+              }).map(function(item) {
+                return item.Childs;
+              });
+              // console.log(data);
+            },
+
+            changeIdx(idx, e) {
+              // console.log(idx, e);
+              this.activeIndex = idx;
+            },
+            goto(CategoryCode) {
+              this.$router.push({ name: "GoodList", params: { CategoryCode } });
+            }
   }
 };
 </script>
@@ -118,8 +158,8 @@ body {
   padding: 15px 18px;
 }
 .van-image {
-  width: 57px;
-  height: 57px;
+  width: 1.2rem;
+  height: 1.2rem;
   margin: 0 12px;
 }
 .van-grid-item__content.van-grid-item__content--center {

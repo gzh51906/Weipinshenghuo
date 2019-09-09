@@ -120,41 +120,41 @@ export default {
         }
     },
     methods: {
-    async getData(id){
-        // 设置请求头
-         this.$axios.interceptors.request.use(
-          config => {
-              config.headers.appName = '3000025';
-              return config;
-          },
-          error => {
-              return Promise.reject(error);
+      async getData(id){
+          // 设置请求头
+          this.$axios.interceptors.request.use(
+            config => {
+                config.headers.appName = '3000025';
+                return config;
+            },
+            error => {
+                return Promise.reject(error);
+            })
+
+
+          
+          let {data} = await this.$axios.post("https://b2capigateway.yiguo.com/api/commodityapi/Commodity/GetCommodityInfo",{
+      
+          body:{
+              CommodityCode:id,
+              CommodityId: "",
+            
+            },
+            head:{
+              CityCode: "512",
+              CityId: "c8dbd17f-a8e0-43b1-b9ce-de1efdc2670e",
+              DeviceId: "98d0667521ac0e5e44c623a83d48258d",
+              DistrictId: "2252dc4d-0069-4c0f-b60f-21ce5607dd46",
+              LoginToken: "",
+              MobileOS: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
+              Token: ""
+            }
           })
-
-
-         
-         let {data} = await this.$axios.post("https://b2capigateway.yiguo.com/api/commodityapi/Commodity/GetCommodityInfo",{
-     
-         body:{
-            CommodityCode:id,
-            CommodityId: "",
-           
-          },
-          head:{
-            CityCode: "512",
-            CityId: "c8dbd17f-a8e0-43b1-b9ce-de1efdc2670e",
-            DeviceId: "98d0667521ac0e5e44c623a83d48258d",
-            DistrictId: "2252dc4d-0069-4c0f-b60f-21ce5607dd46",
-            LoginToken: "",
-            MobileOS: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
-            Token: ""
+          // 解构 ，拿到数据
+          this.data={
+            ...data.Data.CommodityInfo
           }
-        })
-        // 解构 ，拿到数据
-        this.data={
-          ...data.Data.CommodityInfo
-        }
-        console.log(this.data);
+          // console.log(this.data);
         
     },
     onClickIcon() {
@@ -192,18 +192,7 @@ export default {
      this.getData(id);
      
     },
-    // mounted(){
-    //     console.log('mounted:',this.$route)
-    // },
-   
-
-    // beforeRouteUpdate(to,from,next){
-    //     // 如果设置了路由守卫，则必须显性调用next()，否则路由无法继续
-    //     console.log('beforeRouteUpdate',to,from,next)
-    //     let {id} = to.params
-    //     this.getData(id);
-    //     next();
-    // }
+  
 };
 
 
