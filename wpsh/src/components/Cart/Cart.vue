@@ -1,9 +1,11 @@
 <template>
   <div class="cart">
+    <div  class="cart-login line-bottom">登录可同步购物车内商品<a href="javascript:;" class="line-all" @click="gotologin()">登录</a></div>
+    <div class="toppad pd padTop3" style=""><!----><!----></div>
     <div v-if="cartlist && cartlist.length>0">
-    <van-row  gutter="0" v-for="item in cartlist" :key="item.CommodityCode">
+    <van-row  gutter="0" v-for="(item,idx) in cartlist" :key="item.CommodityCode">
       <van-col span="2" class="check">
-        <van-checkbox v-model="checked" checked-color="#07c160"></van-checkbox>
+        <van-checkbox v-model="checked" checked-color="#07c160" @click="checkone(idx)"></van-checkbox>
       </van-col>
   <van-col span="15" class="leftvant">
             <van-col :span="6">
@@ -25,13 +27,14 @@
   </van-col>
    
    </van-row>
+   <div class="bottom3"></div>
 </div>
 <div v-else class="nogoods line-top" style=""><div class="icon"></div> <p>购物车空空的，快去逛逛吧！</p> 
 <div class="btn" @click="gotohome()"><a>去逛逛</a></div></div>
     <!-- 结算栏 -->
    
     <van-submit-bar id="submitBar" :price="totalPrice*100" button-text="去结算">
-      <van-checkbox>全选</van-checkbox>
+      <van-checkbox v-model="checkedall" checked-color="#07c160" @click="checkall">全选</van-checkbox>
     </van-submit-bar>
   </div>
 </template>
@@ -53,39 +56,31 @@ import {mapState,mapGetters,mapMutations,mapActions} from 'vuex';
 export default {
   data(){
     return {
-      checked: true
+      checked: true,
+      checkedall:false
     };
   },
     computed:{
-        // cartlist(){
-        //     return this.$store.state.cart.cartlist
-        // },
-
-        // 映射state.cart.cartlist
-        // ...mapState(['products','totalprice']),
-        // products(){
-        //     return this.$store.state.products
-        // }
-
+   
         ...mapState({
             cartlist(state){
                 return state.cart.cartlist
             }
         }),
 
-        // totalPrice(){
-        //     return this.$store.getters.totalPrice.toFixed(2)
-        // }
-        // 映射getters
         ...mapGetters(['totalPrice'])
       
     },
     methods:{
-        // ...mapMutations(['changeQty','removeItem']),
-        // ...mapMutations({
-        //     changeQty:'changeQty',
-        //     remove:'removeItem'
-        // }),
+        // 单选框
+        checkone(idx){
+          
+        },  
+        // 全选
+        checkall(){
+          this.checkedall = !this.checkedall;
+
+        },
        remove(goods_id) {
           this.$store.commit("removeItem", goods_id);
         },
@@ -95,7 +90,9 @@ export default {
       gotohome(){
         this.$router.push({name:'Home'})
       },
-        
+      gotologin(){
+        this.$router.push({name:"Login"})
+      },
         goto(id){
             
             this.$router.push({name:'Details',params:{id}})
@@ -132,7 +129,7 @@ h4{
     display: block;
     width: 1.2rem;
     height: 1.2rem;
-        margin-top: .3rem;
+    margin-top: .3rem;
     margin-left: 1.2rem;
     margin-bottom: 1rem;
     background: url(//img07.yiguoimg.com/d/web/180119/01642/141511/del.png) center right no-repeat;
@@ -157,7 +154,7 @@ h4{
 
 .van-row{
     background: #fff;
-    margin-top:.3rem;
+    margin-top:.1rem;
     padding: 5px;
 }
 .red{
@@ -203,5 +200,65 @@ font-size: .32rem
     color: #11b57c;
     text-decoration: none;
     outline: 0;
+}
+.cart-login {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1.32rem;
+    background: #fff;
+    line-height: 1.32rem;
+    font-size: .42rem;
+    color: #808080;
+    text-align: center;
+    z-index: 100;
+}
+.cart-login a {
+    position: relative;
+    display: inline-block;
+    width: 1.8rem;
+    height: .72rem;
+    margin: 0 0 0 .42rem;
+    line-height: .72rem;
+    color: #808080;
+}
+.cart-login a:after {
+    border-radius: 6px;
+    border-color: #808080;
+}
+
+.line-all:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200%;
+    height: 200%;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+.line-bottom:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: #ddd;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+}
+.padTop3 {
+    padding-top: 1.52rem;
+}
+.bottom3{
+     padding-bottom:2rem
 }
 </style>
