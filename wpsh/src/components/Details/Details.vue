@@ -154,11 +154,12 @@ export default {
         this.data={
           ...data.Data.CommodityInfo
         }
+        console.log(this.data);
         
     },
     onClickIcon() {
       Toast('加入购物车成功');
-    //   保存数据 图片  现价 原价  标题  id  限购数量
+    //   保存数据 图片  现价 原价  标题  id  限购数量  
     let {SmallPic,SellPrice,OriginalPrice,CommodityName,CommodityCode,MaxLimitCount} = this.data
     let {cartlist} = this.$store.state.cart;
     let value = this.value;
