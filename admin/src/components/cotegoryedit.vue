@@ -4,6 +4,9 @@
     <el-form label-width="120px" @submit.native.prevent="save">
       <el-tabs value="basic" type="border-card">
         <el-tab-pane label="基本信息" name="basic">
+          <el-form-item label="商品ID">
+            <el-input v-model="model.id" id="shopid" @change="onchan"></el-input>
+          </el-form-item>
           <el-form-item label="商品名称">
             <el-input v-model="model.name"></el-input>
           </el-form-item>
@@ -39,6 +42,7 @@ export default {
   data() {
     return {
       model: {
+        id: "",
         name: "",
         title: "",
         price: "",
@@ -46,35 +50,48 @@ export default {
         icon: "",
         venueName: "",
         button: ""
-      }
+      },
+      shopid: ""
     };
   },
+  // methods: {
+  // afterUpload(res) {
+  //   console.log(res);
+  //   //   this.$set(this.model, "icon", res.url);
+  //   this.model.icon = res.url;
+  // },
+  // async save() {
+  //   let res;
+  //   if (this.id) {
+  //     res = await this.$http.put(`rest/categories/${this.id}`, this.model);
+  //   } else {
+  //     res = await this.$http.post("rest/categories", this.model);
+  //   }
+  //   this.$router.push("/categories/list");
+  //   this.$message({
+  //     type: "success",
+  //     message: "保存成功"
+  //   });
+  // },
+  // async fetch() {
+  //   const res = await this.$http.get(`rest/categories/${this.id}`);
+  //   this.model = res.data;
+  // }
+
+  // },
   methods: {
-    afterUpload(res) {
-      console.log(res);
-      //   this.$set(this.model, "icon", res.url);
-      this.model.icon = res.url;
-    },
-    async save() {
-      let res;
-      if (this.id) {
-        res = await this.$http.put(`rest/categories/${this.id}`, this.model);
-      } else {
-        res = await this.$http.post("rest/categories", this.model);
-      }
-      this.$router.push("/categories/list");
-      this.$message({
-        type: "success",
-        message: "保存成功"
-      });
-    },
-    async fetch() {
-      const res = await this.$http.get(`rest/categories/${this.id}`);
-      this.model = res.data;
+    onchan() {
+      this.shopid.onchenge = function(e) {
+        // console.log(e.target.value);
+      };
     }
   },
-  created() {
-    this.id && this.fetch();
+  // created() {
+  //   this.id && this.fetch();
+  // },
+  mounted() {
+    this.shopid = document.querySelector("#shopid");
+    console.log(shopid);
   }
 };
 </script>
