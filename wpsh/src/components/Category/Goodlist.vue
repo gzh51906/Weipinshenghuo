@@ -37,7 +37,46 @@ export default {
     };
   },
   methods:{
+      async getData(id){
+        // 设置请求头
+         this.$axios.interceptors.request.use(
+          config => {
+              config.headers.appName = '3000025';
+              return config;
+          },
+          error => {
+              return Promise.reject(error);
+          })
+
+
+         
+         let {data} = await this.$axios.post("https://b2capigateway.yiguo.com/api/commodityapi/Commodity/GetSearchList",{
+     
+         body:{
+            CommodityCode:id,
+            CommodityId: "",
+            Keyword: "",
+            PageIndex: 1,
+            Sort: 4
+          },
+          head:{
+            CityCode: "512",
+            CityId: "c8dbd17f-a8e0-43b1-b9ce-de1efdc2670e",
+            DeviceId: "98d0667521ac0e5e44c623a83d48258d",
+            DistrictId: "2252dc4d-0069-4c0f-b60f-21ce5607dd46",
+            LoginToken: "",
+            MobileOS: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
+            Token: ""
+          }
+        })
+        // 解构 ，拿到数据
+        this.data={
+          ...data.Data.CommodityList
+        }
+        // console.log(this.data.);
+      },
     // 跳转到详情
+
      goto(id){
             this.$router.push({name:'Details',params:{id}})
         },
@@ -47,7 +86,8 @@ export default {
   },
   created() {},
   mounted() {
-    this.data = this.$route.params.CategoryCode.Childs;
+    let {id} = this.$route.params;
+    this.getData(id);
   },
 
 };
