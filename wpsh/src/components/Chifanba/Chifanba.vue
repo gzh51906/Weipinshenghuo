@@ -103,11 +103,11 @@ export default {
   },
   // 创建阶段拿到数据
   async created() {
-     let {data} = await this.$axios.get("http://localhost:1906/chifanba",{
+     let {data} = await this.$axios.get("http://39.107.43.32:1906/chifanba",{
 
      });
     // 数据格式化
-    console.log(data);
+    // console.log(data);
     this.eatslist = data.data.map(function(item){
           return item;
       });

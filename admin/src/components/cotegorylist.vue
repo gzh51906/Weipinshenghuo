@@ -23,7 +23,7 @@ export default {
     };
   },
   created() {
-    axios.post("http://localhost:1906/goods").then(({ data }) => {
+    axios.post("http://39.107.43.32:1906/goods").then(({ data }) => {
       // console.log(data);
       this.tableData = data.data;
     });
@@ -35,7 +35,7 @@ export default {
           // console.log(this);
           let id = this.parentNode.parentNode.children[0].children[0].innerHTML;
           axios
-            .post("http://localhost:1906/goods/delete", {
+            .post("http://39.107.43.32:1906/goods/delete", {
               CommodityId: id
             })
             .then(({ data }) => {});

@@ -48,7 +48,7 @@ export default {
     }
   },
   created() {
-    axios.post("http://localhost:1906/getindexdata").then(({ data }) => {
+    axios.post("http://39.107.43.32:1906/getindexdata").then(({ data }) => {
       // console.log(data);
 
       this.friut = data.data[0].list;

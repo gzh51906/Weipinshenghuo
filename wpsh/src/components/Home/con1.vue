@@ -49,7 +49,7 @@ export default {
     };
   },
   created() {
-    axios.post("http://localhost:1906/getindexdata").then(({ data }) => {
+    axios.post("http://39.107.43.32:1906/getindexdata").then(({ data }) => {
       this.group = data.data[0].con;
       // console.log(this.group);
     });

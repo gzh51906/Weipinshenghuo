@@ -9,7 +9,7 @@
       广州
       <!-- <van-button type="primary" @click="showPopup" class="arrow">111</van-button>
       <van-popup v-model="show">内容</van-popup> -->
-      <i class="arrow"></i>s
+      <i class="arrow"></i>
     </van-col>
   </van-row>
 </template>

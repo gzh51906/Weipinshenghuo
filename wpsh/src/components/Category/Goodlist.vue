@@ -73,7 +73,7 @@ export default {
         this.data={
           ...data.Data.CommodityList
         }
-        console.log(this.data);
+        // console.log(this.data);
       },
     // 跳转到详情
 

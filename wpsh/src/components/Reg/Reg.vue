@@ -85,7 +85,7 @@ export default {
         if (Rgx.test(this.username)) {
           // this.vfyPhone();
           this.$axios
-            .get("http://localhost:1906/user/check", {
+            .get("http://39.107.43.32:1906/user/check", {
               params:{
                   username: this.username,
               }
@@ -120,7 +120,7 @@ export default {
     vfyPhone() {
       // 发起请求校验用户名是否已被注册
       this.$axios
-        .post("http://localhost:1906/user/reg", {
+        .post("http://39.107.43.32:1906/user/reg", {
           username: this.username,
           password: this.password
         })
