@@ -1,10 +1,18 @@
 
 
 ### (易果生鲜)团队分工
+
+###  组长：阳灿，组员：黄楚燕，叶群，罗志杰
+
 ###  官网地址      :https://h5homepage.yiguo.com/?channel=5&appName=3000025
+
 ###  webApp地址   ：http://39.107.43.32:1908
+
 ###  后台管理系统  : http://39.107.43.32:1909
+
 ###  GitHuo仓库地址：https://github.com/gzh51906/Weipinshenghuo
+
+
 ## 项目文件分布
 
     1.admin 后台管理系统
