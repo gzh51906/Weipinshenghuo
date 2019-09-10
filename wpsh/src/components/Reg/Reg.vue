@@ -18,7 +18,7 @@
         <van-button slot="button" size="small" type="primary" @click="getCode">发送验证码</van-button>
       </van-field>
 
-      <van-field type='tel' v-model="code" size="large" maxlength="4" placeholder="请输入您的验证码" />
+      <van-field type="tel" v-model="code" size="large" maxlength="4" placeholder="请输入您的验证码" />
       <van-field
         v-model="password"
         type="password"
@@ -65,26 +65,44 @@ export default {
       vPassword: "",
 
       isPhone: false,
-     
+
       isPwd: false,
       isVpwd: false,
 
-      isDeal: false,
+      isDeal: false
     };
   },
 
   methods: {
-    golog(){
-       this.$router.push('/Login')
+    golog() {
+      this.$router.push("/Login");
     },
     // 手机号验
 
-    vfyUse() { 
+    vfyUse() {
       var Rgx = /^1(3[0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|8[0-9]|9[89])\d{8}$/;
       if (this.username) {
         if (Rgx.test(this.username)) {
-                // this.vfyPhone();
-                this.isPhone = true;
+          // this.vfyPhone();
+          this.$axios
+            .get("http://localhost:1906/user/check", {
+              params:{
+                  username: this.username,
+              }
+                
+            })
+            .then(res => {
+              console.log(res.data.code);
+              if(res.data.code===0){
+                Toast({
+            message: "手机号码已被注册",
+            closeOnClick: true
+          });
+              }else{
+                  this.isPhone = true;
+              }
+            });
+         
         } else {
           Toast({
             message: "手机号码不合法",
@@ -99,14 +117,16 @@ export default {
       }
     },
     // 检验手机号是否被注册
-     vfyPhone(){
-          // 发起请求校验用户名是否已被注册
-        this.$axios.post('http://localhost:5786/reg',{ 
-                username:this.username,
-                password:this.password,       
-        }).then(res=>{
-             this.$router.push('/Login')
+    vfyPhone() {
+      // 发起请求校验用户名是否已被注册
+      this.$axios
+        .post("http://localhost:1906/user/reg", {
+          username: this.username,
+          password: this.password
         })
+        .then(res => {
+          this.$router.push("/Login");
+        });
       //  console.log(data);
       // if (data.code === 0) {
       //    this.isPhone = false;
@@ -168,9 +188,8 @@ export default {
         }
         this.code = ccode;
         this.isPhone = false;
-        this.isCode=true
-      } 
-      
+        this.isCode = true;
+      }
     },
     vfyPwd() {
       var Rgx = /^\w{4,10}$/;
@@ -209,13 +228,12 @@ export default {
     },
     // 注册
     regGo() {
-      
       if (this.isPhone) {
         if (this.code) {
           if (this.isPwd) {
             if (this.isVpwd) {
               if (this.isDeal) {
-                   this.vfyPhone()  
+                this.vfyPhone();
               } else {
                 Toast({
                   message: "请阅读协议",
@@ -226,9 +244,8 @@ export default {
               this.vfyVpwd();
             }
           } else {
-            this.vfyPwd(); 
+            this.vfyPwd();
           }
-         
         } else {
           Toast({
             message: "验证码不能为空",
@@ -236,11 +253,10 @@ export default {
           });
         }
       } else {
-          this.vfyUse(); 
+        this.vfyUse();
       }
     }
-  },
- 
+  }
 };
 </script>
 <style scoped>

@@ -70,7 +70,7 @@ export default {
       
       if (this.username){
         //  console.log(1111,this.username);
-          this.$axios.post('http://localhost:5786/login',{ 
+          this.$axios.post('http://localhost:1906/user/login',{ 
                 username:this.username,  
                 password:this.password        
         }).then(res=>{
