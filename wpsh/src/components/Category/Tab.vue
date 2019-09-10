@@ -8,7 +8,7 @@
           v-show="idx===activeIndex"
           :key="item.CategoryName"
         >
-          <van-grid-item v-for="(i) in item" :key="i.CategoryCode" @click.native="goto(i)">
+          <van-grid-item v-for="(i) in item" :key="i.CategoryCode" @click.native="goto(i.CategoryId)">
             <van-image :src="i.PictureUrl" />
             <p>{{i.CategoryName}}</p>
           </van-grid-item>
@@ -97,11 +97,10 @@ export default {
               }).map(function(item) {
                 return item.Childs;
               });
-              // console.log(data);
+              console.log(data);
             },
 
             changeIdx(idx, e) {
-              // console.log(idx, e);
               this.activeIndex = idx;
             },
             goto(CategoryCode) {

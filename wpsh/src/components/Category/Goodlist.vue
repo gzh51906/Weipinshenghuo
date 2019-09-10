@@ -37,7 +37,7 @@ export default {
     };
   },
   methods:{
-      async getData(id){
+      async getData(CategoryCode){
         // 设置请求头
          this.$axios.interceptors.request.use(
           config => {
@@ -52,14 +52,14 @@ export default {
          
          let {data} = await this.$axios.post("https://b2capigateway.yiguo.com/api/commodityapi/Commodity/GetSearchList",{
      
-         body:{
-            CommodityCode:id,
-            CommodityId: "",
+         Body:{
+            CategoryCode:"",
+            CategoryId: CategoryCode,
             Keyword: "",
             PageIndex: 1,
             Sort: 4
           },
-          head:{
+          Head:{
             CityCode: "512",
             CityId: "c8dbd17f-a8e0-43b1-b9ce-de1efdc2670e",
             DeviceId: "98d0667521ac0e5e44c623a83d48258d",
@@ -73,7 +73,7 @@ export default {
         this.data={
           ...data.Data.CommodityList
         }
-        // console.log(this.data.);
+        console.log(this.data);
       },
     // 跳转到详情
 
@@ -86,8 +86,10 @@ export default {
   },
   created() {},
   mounted() {
-    let {id} = this.$route.params;
-    this.getData(id);
+    let {CategoryCode} = this.$route.params;
+    this.getData(CategoryCode);
+    console.log(CategoryCode);
+    
   },
 
 };
