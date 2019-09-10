@@ -10,6 +10,7 @@ const {
 // 引入路由文件
 const cartRouter = require('./goods');
 const chifanbaRouter = require('./chifanba')
+const indexdata = require("./getindexdata");
 
 
 // 利用中间bodyParse格式化请求参数
@@ -31,8 +32,11 @@ Router.use((req, res, next) => {
 
 // 商品
 Router.use('/goods', cartRouter);
-Router.use('/chifanba',chifanbaRouter)
-Router.get('/verify',(req,res)=>{
+Router.use('/chifanba', chifanbaRouter)
+
+Router.use('/getindexdata', indexdata);
+
+Router.get('/verify', (req, res) => {
     // 获取前端传入的token
     // 对token进行校验
     let authorization = req.header('Authorization');
@@ -56,4 +60,4 @@ Router.get('/verify',(req,res)=>{
 });
 
 
-module.exports = Router;
+module.exports = Router
