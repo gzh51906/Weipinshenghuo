@@ -69,17 +69,23 @@ export default {
      
       
       if (this.username){
-        //  console.log(1111,this.username);
-          this.$axios.post('http://localhost:5786/login',{ 
+    
+          this.$axios.post('http://localhost:1906/user/login',{ 
                 username:this.username,  
                 password:this.password        
         }).then(res=>{
             let{code,msg} = res.data;
             if(code === 1){
-                this.$router.push('/Mine')
+                localStorage.setItem('isLogin',true)
+                this.$router.push({
+                  path:"/Mine",
+                  query:{
+                    username:this.username
+                  }
+                })
             }else{
                Toast({
-                    message: msg,
+                    message: '用户未注册或秘密错误',
                     closeOnClick: true
                   })
             }

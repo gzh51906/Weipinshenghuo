@@ -4,11 +4,11 @@
       <span class="imgBorder">
         <img alt=" 用户头像" src="//img02.yiguo.com/e/web/150703/00781/140145/no-pic.jpg" />
       </span>
-      <a href="javascript:;">
-        <p class="name">
-          <span id="login" @click="login">登录/</span>
-          <span id="reg" @click="reg">注册</span>
-        </p>
+       <a href="javascript:;" v-show="!code">
+        <p class="name" @click="goLogin" >登录/注册</p>
+      </a>
+      <a href="javascript:;" v-show="code">
+        <p class="name" >{{username}}<span @click.stop="exit">[退出]</span></p>
       </a>
     </div>
     <i class="setting"></i>
@@ -26,13 +26,29 @@
 </template>
 <script>
 export default {
-  methods:{
-    login(){
-      this.$router.push("/login");
-    },
-     reg(){
-      this.$router.push("/reg");
+   data(){
+    return{
+      code:false,
+      username:''
     }
+  },
+  created(){
+    // 获取用户名
+      this.getUsename();
+      
+  },
+  methods:{
+     goLogin(){ 
+       this.$router.push('/Login')
+     },
+     getUsename(){
+       this.code = localStorage.getItem("isLogin");
+       this.username=this.$route.query.username;
+     },
+     exit(){
+       this.code = false;
+       localStorage.removeItem("isLogin");
+     }
   }
 };
 </script>
