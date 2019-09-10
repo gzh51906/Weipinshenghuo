@@ -127,22 +127,12 @@ export default {
         .then(res => {
           this.$router.push("/Login");
         });
-      //  console.log(data);
-      // if (data.code === 0) {
-      //    this.isPhone = false;
-      //       Toast({
-      //       message: "该手机号码已被注册",
-      //       closeOnClick: true
-      //     });
-      // } else {
-      //   //通过验证
-      //    this.isPhone = true;
-      // }
+     
     },
     //  获取验证码
     getCode() {
-      this.vfyUse();
-      if (this.isPhone) {
+      if(this.username!=''){
+          if (this.isPhone) {
         const random = [
           0,
           1,
@@ -190,6 +180,13 @@ export default {
         this.isPhone = false;
         this.isCode = true;
       }
+      }else{
+         Toast({
+            message: "手机号不能为空",
+            closeOnClick: true
+          });
+      }
+      
     },
     vfyPwd() {
       var Rgx = /^\w{4,10}$/;
