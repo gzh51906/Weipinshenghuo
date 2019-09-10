@@ -11,6 +11,8 @@ const {
 const cartRouter = require('./goods');
 const indexdata = require("./getindexdata");
 
+const userRouter= require('./user')
+
 
 // 利用中间bodyParse格式化请求参数
 Router.use(express.json(), express.urlencoded({
@@ -32,6 +34,11 @@ Router.use((req, res, next) => {
 // 商品
 Router.use('/goods', cartRouter);
 Router.use('/getindexdata', indexdata);
+
+Router.use('/user',userRouter)
+
+
+
 
 Router.get('/verify', (req, res) => {
     // 获取前端传入的token
